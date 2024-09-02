@@ -104,12 +104,14 @@
    $is_addi = $dec_bits ==? 11'bx_000_0010011;
    $is_add  = $dec_bits ==? 11'b0_000_0110011;
    
+   // Register File Read
+   m4+rf(32, 32, $reset, $wr_en, $wr_index[4:0], $wr_data[31:0], $rs1_valid, $rs1[4:0],$src1_value, $rs2_valid, $rs2[4:0], $src2_value)
+   
    // Assert these to end simulation (before Makerchip cycle limit).
    *passed = 1'b0;
    *failed = *cyc_cnt > M4_MAX_CYC;
    
-   //m4+rf(32, 32, $reset, $wr_en, $wr_index[4:0], $wr_data[31:0], $rd_en1, $rd_index1[4:0],
-   //$rd_data1, $rd_en2, $rd_index2[4:0], $rd_data2)
+   //m4+rf(32, 32, $reset, $wr_en, $wr_index[4:0], $wr_data[31:0], $rd_en1, $rd_index1[4:0], $rd_data1, $rd_en2, $rd_index2[4:0], $rd_data2)
    //m4+dmem(32, 32, $reset, $addr[4:0], $wr_en, $wr_data[31:0], $rd_en, $rd_data)
    m4+cpu_viz()
    `BOGUS_USE($opcode $rd $rd_valid $rs1 $rs1_valid $rs2 $rs2_valid $func3 $func3_valid 
